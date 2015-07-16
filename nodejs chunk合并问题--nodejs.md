@@ -14,4 +14,4 @@ http.get(qq_url,function(res) {
     })
 })
 ```
-这边的chunk是两个buffer，暂时还不知道怎么合并（留）
+这边的chunk是两个buffer，暂时还不知道怎么合并（**留**）
