@@ -11,11 +11,11 @@ const CardGroup = function ({ dataset }) {
           <Label 
             size="mini" 
             style={{ background: '#' + label.color, cursor: 'pointer'}} 
-            key={_index}
             circular
             empty
           />
         }
+        key={_index}
         content={label.name}
         position='top center'
       />
