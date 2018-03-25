@@ -1,24 +1,31 @@
 import React, { Component } from 'react'
 import './App.scss'
-import CardGroup from './components/Posts'
-import { Container, Menu } from 'semantic-ui-react'
+import CardGroup from 'components/Posts'
+import Header from 'components/Header'
+import { listIssues } from 'services/issue'
 
 class App extends Component {
+
+  constructor () {
+    super()
+    this.state = {
+      posts: []
+    }
+  }
+
+  async componentDidMount () {
+    const issues = await listIssues()
+    this.setState({
+      posts: issues.data
+    })
+  }
+
   render () {
     return (
       <div>
-        <Menu attached inverted>
-          <Container>
-            <Menu.Item as='a' header>
-              xiadd的博客
-            </Menu.Item>
-            <Menu.Item as='a'>首页</Menu.Item>
-            <Menu.Item as='a'>关于</Menu.Item>
-            <Menu.Item as='a'>归档</Menu.Item>
-          </Container>
-        </Menu>
+        <Header />
         <div className="ui container" style={{marginTop: '2rem'}}>
-          <CardGroup />
+          <CardGroup dataset={this.state.posts} />
         </div>
       </div>
     )
