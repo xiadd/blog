@@ -1,31 +1,27 @@
 import React, { Component } from 'react'
+import { Switch, Route } from 'react-router-dom'
 import './App.scss'
-import CardGroup from 'components/Posts'
+
 import Header from 'components/Header'
-import { listIssues } from 'services/issue'
+
+import Home from 'pages/Home'
+import About from 'pages/About'
+import Archives from 'pages/Archive'
+import Post from 'pages/Post'
 
 class App extends Component {
-
-  constructor () {
-    super()
-    this.state = {
-      posts: []
-    }
-  }
-
-  async componentDidMount () {
-    const issues = await listIssues()
-    this.setState({
-      posts: issues.data
-    })
-  }
 
   render () {
     return (
       <div>
         <Header />
-        <div className="ui container" style={{marginTop: '2rem'}}>
-          <CardGroup dataset={this.state.posts} />
+        <div className="ui container" style={{marginTop: '2rem', width: '720px'}}>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/archives" component={Archives} />
+            <Route path="/post/:id" component={Post} />
+          </Switch>
         </div>
       </div>
     )

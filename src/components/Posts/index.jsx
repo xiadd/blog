@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, Label, Popup } from 'semantic-ui-react'
 import moment from 'moment'
+import { Link } from 'react-router-dom'
 
 const CardGroup = function ({ dataset }) {
 
@@ -25,7 +26,9 @@ const CardGroup = function ({ dataset }) {
       <Card fluid key={index}>
         <Card.Content>
           <Card.Header>
-            {post.title} 
+            <Link to={`/post/${post.number}`} style={{ color: '#444', textDecoration: 'none' }}>
+              {post.title} 
+            </Link>
           </Card.Header>
 
           <Card.Meta>

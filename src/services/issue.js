@@ -6,3 +6,9 @@ export function listIssues (query) {
     params: query
   })
 }
+
+export function getIssue (id) {
+  return request({
+    url: `/repos/xiadd/blog/issues/${id}`
+  })
+}
