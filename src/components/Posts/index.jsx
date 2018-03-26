@@ -23,7 +23,7 @@ const CardGroup = function ({ dataset }) {
       
     ))
     return (
-      <Card fluid key={index}>
+      <Card fluid key={index} className="post-card">
         <Card.Content>
           <Card.Header>
             <Link to={`/post/${post.number}`} style={{ color: '#444', textDecoration: 'none' }}>

@@ -1,5 +1,21 @@
+
+body {
+  background-image: url('./images/doodles.png');
+  background-attachment: fixed;
+}
 .configs {
   li {
     margin: 15px 0px;
+  }
+}
+
+.post-container {
+  background: #fff;
+  padding: 2rem 1rem;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  .post-card {
+    box-shadow: none!important;
+    border-bottom: 1px solid #d4d4d5!important
   }
 }

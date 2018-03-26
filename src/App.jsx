@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <div className="ui container" style={{marginTop: '2rem', width: '760px'}}>
+        <div className="ui container post-container" style={{marginTop: '2rem', width: '760px'}}>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
