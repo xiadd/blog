@@ -12,3 +12,9 @@ export function getIssue (id) {
     url: `/repos/xiadd/blog/issues/${id}`
   })
 }
+
+export function listLabels () {
+  return request({
+    url: '/repos/xiadd/blog/labels'
+  })
+}
