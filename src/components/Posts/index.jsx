@@ -9,12 +9,14 @@ const CardGroup = function ({ dataset }) {
     const labels = post.labels.map((label, _index) => (
       <Popup
         trigger={
-          <Label 
-            size="mini" 
-            style={{ background: '#' + label.color, cursor: 'pointer'}} 
-            circular
-            empty
-          />
+          <Link to={`/tags/${label.name}`}>
+            <Label 
+              size="mini" 
+              style={{ background: '#' + label.color, cursor: 'pointer'}} 
+              circular
+              empty
+            />
+          </Link>
         }
         key={_index}
         content={label.name}

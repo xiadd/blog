@@ -8,6 +8,7 @@ import Home from 'pages/Home'
 import About from 'pages/About'
 import Archives from 'pages/Archive'
 import Post from 'pages/Post'
+import Tags from 'pages/Tags'
 
 class App extends Component {
 
@@ -20,6 +21,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
             <Route path="/archives" component={Archives} />
+            <Route path="/tags/:tag" component={Tags} />
             <Route path="/post/:id" component={Post} />
           </Switch>
         </div>
