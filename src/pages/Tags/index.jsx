@@ -17,34 +17,32 @@ class Tags extends Component {
   }
 
   async componentDidMount () {
-    const labels = await listLabels()
     const { match } = this.props
+    const [labels, issues] = await  Promise.all([listLabels(), listIssues({ labels: match.params.tag })])
     if (!labels.data.length) return
     this.setState({
-      labels: labels.data
+      labels: labels.data,
+      issues: issues.data
     })
+  }
+
+  shouldComponentUpdate (prevProps, prevState) {
+    if (!this.state.issues.length || !this.state.labels.length) {
+      return true
+    }
+    if (prevProps.match.params.tag === this.props.match.params.tag) {
+      return false
+    }
+    return true
+  }
+
+  async componentDidUpdate () {
+    const { match } = this.props
     const issues = await listIssues({ labels: match.params.tag })
     this.setState({
       issues: issues.data
     })
   }
-
-  // shouldComponentUpdate (prevProps) {
-  //   if (!this.state.labels.length || !this.state.issues.length) {
-  //     return true
-  //   }
-  //   if (prevProps.match.params.tag === this.props.match.params.tag) {
-  //     return false
-  //   }
-  // }
-
-  // async componentDidUpdate () {
-  //   const { match } = this.props
-  //   const issues = await listIssues({ labels: match.params.tag })
-  //   this.setState({
-  //     issues: issues.data
-  //   })
-  // }
 
   render () {
     const { match } = this.props
@@ -57,7 +55,7 @@ class Tags extends Component {
         {
           this.state.labels.map((label, key) => (
             <Link to={`/tags/${label.name}`} key={key} style={{marginRight: '.5rem'}}>
-              <Label key={key} size="mini">{label.name}</Label>
+              <Label key={key} size="small">{label.name}</Label>
             </Link>
           ))
         }
