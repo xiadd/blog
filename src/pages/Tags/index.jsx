@@ -26,14 +26,15 @@ class Tags extends Component {
     })
   }
 
-  shouldComponentUpdate (prevProps, prevState) {
-    if (!this.state.issues.length || !this.state.labels.length) {
+  shouldComponentUpdate (nextProps, nextState) {
+    if (nextProps.match.params.tag !== this.props.match.params.tag) {
       return true
     }
-    if (prevProps.match.params.tag === this.props.match.params.tag) {
-      return false
+
+    if (nextState.issues.length && this.state.issues.length === 0) {
+      return true
     }
-    return true
+    return false
   }
 
   async componentDidUpdate () {
