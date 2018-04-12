@@ -1,9 +1,9 @@
 import React from 'react'
-import { Card, Label, Popup } from 'semantic-ui-react'
+import { Card, Label, Popup, Loader } from 'semantic-ui-react'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 
-const CardGroup = function ({ dataset }) {
+const CardGroup = function ({ dataset, loading }) {
 
   const posts = dataset.map((post, index) => {
     const labels = post.labels.map((label, _index) => (
@@ -45,7 +45,7 @@ const CardGroup = function ({ dataset }) {
   })
   return (
     <Card.Group>
-      {posts}
+      { loading ? <Loader active inline='centered' style={{ marginTop: '1.5rem' }} /> : posts }
     </Card.Group>
   )
 }

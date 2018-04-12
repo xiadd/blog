@@ -12,36 +12,30 @@ class Tags extends Component {
     super()
     this.state = {
       labels: [],
-      issues: []
+      issues: [],
+      loading: true
     }
   }
 
   async componentDidMount () {
     const { match } = this.props
-    const [labels, issues] = await  Promise.all([listLabels(), listIssues({ labels: match.params.tag })])
+    const [labels, issues] = await Promise.all([listLabels(), listIssues({ labels: match.params.tag })])
     if (!labels.data.length) return
     this.setState({
       labels: labels.data,
-      issues: issues.data
+      issues: issues.data,
+      loading: false
     })
   }
 
-  shouldComponentUpdate (nextProps, nextState) {
-    if (nextProps.match.params.tag !== this.props.match.params.tag) {
-      return true
-    }
-
-    if (nextState.issues.length && this.state.issues.length === 0) {
-      return true
-    }
-    return false
-  }
-
-  async componentDidUpdate () {
+  async componentDidUpdate (prevProps, prevState) {
+    if (prevProps.match.params.tag === this.props.match.params.tag) return
     const { match } = this.props
+    await this.setState({ loading: true })
     const issues = await listIssues({ labels: match.params.tag })
     this.setState({
-      issues: issues.data
+      issues: issues.data,
+      loading: false
     })
   }
 
@@ -62,7 +56,7 @@ class Tags extends Component {
         }
 
         <div className="tag-posts-group">
-          <PostGroup dataset={this.state.issues} />
+          <PostGroup dataset={this.state.issues} loading={this.state.loading} />
         </div>
       </div>
     )

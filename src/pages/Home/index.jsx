@@ -11,7 +11,8 @@ class Home extends Component {
       posts: [],
       current: 1,
       loading: true,
-      moreLoading: false
+      moreLoading: false,
+      pagination: {}
     }
   }
 
@@ -20,7 +21,8 @@ class Home extends Component {
     const issues = await listIssues({ per_page: 10 })
     this.setState({
       posts: issues.data,
-      loading: false
+      loading: false,
+      pagination: issues.pagination
     })
   }
 
@@ -34,6 +36,7 @@ class Home extends Component {
     this.setState((prevState) => {
       prevState.posts = prevState.posts.concat(issues.data)
       prevState.moreLoading = false
+      prevState.pagination = issues.pagination
       return prevState
     })
   }
@@ -45,7 +48,10 @@ class Home extends Component {
         <PostGroup dataset={this.state.posts} />
         <div className="load-more" style={{ display: this.state.loading ? 'none': 'block' }}>
           <Loader active={this.state.moreLoading} inline='centered' size='mini' />
-          { !this.state.moreLoading && <a onClick={this.loadMore}>加载更多</a>}
+          {
+            !this.state.moreLoading && !!this.state.pagination.last && <a onClick={this.loadMore}>加载更多</a>
+          }
+          { !!!this.state.pagination.last && <span style={{ color: '#aaa' }}>#止步#</span>}
         </div>
       </div>
     )
