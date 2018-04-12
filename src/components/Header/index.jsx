@@ -12,6 +12,7 @@ class Header extends Component {
           </Menu.Item>
           <Menu.Item><Link to="/">首页</Link></Menu.Item>
           <Menu.Item><Link to="/archives">归档</Link></Menu.Item>
+          <Menu.Item><Link to="/tags/javascript">标签</Link></Menu.Item>
           <Menu.Item><Link to="/about">关于</Link></Menu.Item>
         </Container>
       </Menu>

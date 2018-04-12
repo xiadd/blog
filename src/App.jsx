@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
+import AsyncComponent from './components/AsyncComponent'
 import './App.scss'
 
 import Header from 'components/Header'
 
-import Home from 'pages/Home'
-import About from 'pages/About'
-import Archives from 'pages/Archive'
-import Post from 'pages/Post'
-import Tags from 'pages/Tags'
+const Home = AsyncComponent(() => import(/* webpackChunkName: "home" */'pages/Home'))
+const About = AsyncComponent(() => import(/* webpackChunkName: "about" */'pages/About'))
+const Archives = AsyncComponent(() => import(/* webpackChunkName: "archive" */'pages/Archive'))
+const Post = AsyncComponent(() => import(/* webpackChunkName: "post" */'pages/Post'))
+const Tags = AsyncComponent(() => import(/* webpackChunkName: "tags" */'pages/Tags'))
 
 class App extends Component {
 
