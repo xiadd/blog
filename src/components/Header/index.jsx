@@ -11,7 +11,7 @@ class Header extends Component {
             <Link to="/">xiadd的博客</Link>
           </Menu.Item>
           <Menu.Item><Link to="/">首页</Link></Menu.Item>
-          <Menu.Item><Link to="/archives">归档</Link></Menu.Item>
+          {/* <Menu.Item><Link to="/archives">归档</Link></Menu.Item> */}
           <Menu.Item><Link to="/tags/javascript">标签</Link></Menu.Item>
           <Menu.Item><Link to="/about">关于</Link></Menu.Item>
         </Container>

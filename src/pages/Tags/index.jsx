@@ -50,7 +50,7 @@ class Tags extends Component {
         {
           this.state.labels.map((label, key) => (
             <Link to={`/tags/${label.name}`} key={key} style={{marginRight: '.5rem'}}>
-              <Label key={key} size="small">{label.name}</Label>
+              <Label key={key} style={{marginBottom: '.5rem'}}>{label.name}</Label>
             </Link>
           ))
         }
