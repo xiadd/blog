@@ -4,6 +4,7 @@ import AsyncComponent from './components/AsyncComponent'
 import './App.scss'
 
 import Header from 'components/Header'
+import Footer from 'components/Footer'
 
 const Home = AsyncComponent(() => import(/* webpackChunkName: "home" */'pages/Home'))
 const About = AsyncComponent(() => import(/* webpackChunkName: "about" */'pages/About'))
@@ -26,6 +27,7 @@ class App extends Component {
             <Route path="/post/:id" component={Post} />
           </Switch>
         </div>
+        <Footer />
       </div>
     )
   }
